@@ -1,0 +1,183 @@
+    body {
+margin: 0;
+font-family: 'Josefin Slab', serif;
+background: white;
+color: #4B3F72;
+    }
+
+.Head{
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.home-pg {
+  position: relative;
+  display: inline-block;
+  font-family: 'Josefin Slab', serif;
+  font-size: 16px;
+  color: black;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.home-pg::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(to right, #4B3F72, #17a2b8, #84cc16);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+
+.home-pg::after {
+  content: "";
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 20px;
+
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.home-pg:hover::before {
+  transform: scaleX(1);
+}
+
+.home-pg:hover::after {
+  opacity: 1;
+}
+
+.logo-link img {
+  transition: transform 0.3s ease;
+}
+
+.logo-link:hover img {
+  transform: scale(1.07);
+}
+
+
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+
+.explore{
+font-family: 'Josefin Slab', serif;
+font-size: 15px
+text-decoration: none;
+color: inherit;
+
+}
+
+    .sign-up{
+margin: 20px;
+padding:10 px;
+justify-content: space-between;
+align-items: center;
+font-style: italic;
+cursor: pointer;
+border: none;
+background-color: white;
+
+ }
+
+   .hero {
+      text-align: center;
+      margin-top: 5px;
+      font-size: 20px;
+      font-family: 'Josefin Slab', serif;
+    }
+
+
+.btn {
+    font-style: italic;
+    font-weight: 500;
+}
+
+.btn:hover {
+    opacity: 0.9;
+    transition: 1s;
+
+
+
+.btn-custom-purple {
+    background-color: #4B3F72 !important;
+    border-color: #4B3F72 !important;
+    color: white !important;
+}
+
+.btn-custom-purple:hover {
+    background-color: #3a325a !important;
+    border-color: #3a325a !important;
+    color: white !important;
+}
+
+
+.btn-custom-purple {
+    color: white !important;
+}
+
+.circle {
+    background-color: red;
+    border-radius: 50%;
+    position: fixed;
+    top: 150px;
+    right: 20px;
+}
+
+
+.card {
+  break-inside: avoid;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.08);
+  overflow: hidden;
+}
+
+.card img {
+  width: 100%;
+  display: block;
+
+}
+
+.desc,
+.uploader {
+  font-size: 0.9rem;
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+

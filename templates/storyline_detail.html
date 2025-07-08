@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Storyline - {{ storyline.title }}{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='storyline.css') }}">
+<style>
+
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h2 class="mb-4">📁 {{ storyline.title }}</h2>
+
+    {% if storyline.photos %}
+    <div class="masonry mt-4">
+        {% for photo in storyline.photos %}
+        <div class="masonry-item">
+            <img src="{{ url_for('static', filename='uploads/' + photo.image_filename) }}"
+                 alt="Story Photo">
+            <div class="p-2">
+                <p class="story-date mb-1 text-muted" style="font-size: 0.9rem;">{{ photo.date.strftime('%Y-%m-%d')
+                    }}</p>
+                {% if photo.comment %}
+                <p class="story-comment mb-0" style="font-size: 0.95rem;">{{ photo.comment }}</p>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% else %}
+    <p>No photos added yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

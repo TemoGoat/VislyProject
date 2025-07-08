@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='Search.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="text-center mt-5">
+    <div class="hero">
+        <h1>Discover Top Designs</h1>
+        <p>Great design starts here</p>
+    </div>
+</div>
+
+
+<div>
+    <form method="get" action="{{ url_for('home') }}" class="search-form">
+        <input type="text" name="q" placeholder="Search Posters & Users..." value="{{ query }}" class="search-input">
+        <button type="submit" class="search-button">Search</button>
+    </form>
+</div>
+
+
+<header class="d-flex justify-content-center align-items-center text-center px-5 py-3 shadow-sm">
+    <div class="row w-100 gy-2 gx-2">
+
+        <div class="col-12 col-md d-flex justify-content-center align-items-center"
+             style="background-color: #4B3F72; color: white; border-radius: 8px; height: 35px;">
+            <div>Graphic Design</div>
+        </div>
+
+        <div class="col-12 col-md d-flex justify-content-center align-items-center">
+            <div>Illustration</div>
+        </div>
+
+        <div class="col-12 col-md d-flex justify-content-center align-items-center"
+             style="background-color: #4B3F72; color: white; border-radius: 8px; height: 35px;">
+            <div>3D Art</div>
+        </div>
+
+        <div class="col-12 col-md d-flex justify-content-center align-items-center">
+            <div>Digital Painting</div>
+        </div>
+
+        <div class="col-12 col-md d-flex justify-content-center align-items-center"
+             style="background-color: #4B3F72; color: white; border-radius: 8px; height: 35px;">
+            <div>Branding</div>
+        </div>
+
+        <div class="col-12 col-md d-flex justify-content-center align-items-center">
+            <div>Logo Designs</div>
+        </div>
+
+        <div class="col-12 col-md d-flex justify-content-center align-items-center"
+             style="background-color: #4B3F72; color: white; border-radius: 8px; height: 35px;">
+            <div>Photography</div>
+        </div>
+
+    </div>
+</header>
+
+
+
+<div class="search-results container mt-4 mb-4">
+
+
+    {% if users %}
+    <div class="user-results mb-4">
+        <h2 class="mb-3">Users</h2>
+        <div class="row">
+            {% for user in users %}
+            <div class="col-md-4 mb-3">
+                <div class="p-3 border rounded shadow-sm bg-white d-flex align-items-center">
+
+                    {% if user.image %}
+                    <img src="{{ url_for('static', filename='uploads/' ~ user.image) }}"
+                         alt="{{ user.username }}"
+                         class="rounded-circle me-3"
+                         style="width: 60px; height: 60px; object-fit: cover; border: 2px solid #4B3F72;">
+                    {% else %}
+                    <div class="rounded-circle bg-secondary me-3"
+                         style="width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; color: white;">
+                        <strong>{{ user.username[0]|upper }}</strong>
+                    </div>
+                    {% endif %}
+
+
+                    <div>
+                        <p class="mb-0">
+                            <strong>Username:</strong>
+                            <a href="{{ url_for('public_profile', username=user.username) }}"
+                               class="text-decoration-none"
+                               style="color: #4B3F72; font-weight: bold;">
+                                {{ user.username }}
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+
+</div>
+
+
+<div class="masonry px-4 mt-4">
+    {% for p in photos %}
+    <div class="masonry-item">
+        <a href="{{ url_for('photo_detail', photo_id=p.id) }}" class="d-block">
+            <img
+                    src="{{ url_for('static', filename='uploads/' ~ p.filename) }}"
+                    alt="{{ p.description or 'Photo' }}"
+                    class="img-fluid thumb"
+            >
+        </a>
+        <a href="{{ url_for('public_profile', username=p.user.username) }}"
+           class="uploader text-decoration-none fw-bold">
+            <span style="font-weight: bold; color: black; letter-spacing: 1px;">Owner: {{ p.user.username }}</span><br>
+            <span style="margin-top: 2px; display: inline-block; color: #6c757d; font-size: 14px;">Name: {{ p.title }}</span>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

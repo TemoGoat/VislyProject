@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block body %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='history.css') }}">
+{% endblock %}
+<h2 class="text-center mt-4">Your Viewing History</h2>
+
+{% if photos %}
+<div class="masonry px-4 mt-3">
+
+    {% for p in photos %}
+    {% if p %}
+    <div class="masonry-item">
+        <a href="{{ url_for('photo_detail', photo_id=p.id) }}" class="d-block">
+            <img src="{{ url_for('static', filename='uploads/' ~ p.filename) }}"
+                 alt="Viewed photo" class="img-fluid thumb">
+        </a>
+
+        <!-- აქ ჩასმული Owner და Name -->
+        <div class="mt-2">
+                <span style="font-weight: bold; color: black; letter-spacing: 1px;">
+                    Owner: {{ p.user.username }}
+                </span><br>
+            <span style="margin-top: 2px; display: inline-block; color: #6c757d; font-size: 14px;">
+                    Name: {{ p.title }}
+                </span>
+        </div>
+
+    </div>
+    {% endif %}
+    {% endfor %}
+
+</div>
+{% else %}
+<p class="text-center text-muted mt-4">No photos viewed yet.</p>
+{% endif %}
+
+
+<footer class="visly-footer">
+    <div class="footer-container">
+        <div class="footer-branding">
+            <div class="branding-left">
+                <a href="/"> <img src="/static/VISLY-01 WHITE.png" width="100px" class="footer-logo" alt="Visly Logo">
+                </a>
+            </div>
+            <div class="branding-right">
+                <a href="https://tbcbank.ge/ka/tbc-education"> <img src="/static/TBCLOGOWHITE.png" width="150px"
+                                                                    class="footer-logo" alt="TBC Logo"> </a>
+            </div>
+        </div>
+
+        <div class="footer-links">
+            <a href="/">Home</a>
+            <a href="#">News</a>
+            <a href="/aboutus">About Us</a>
+            <a href="/">Find Inspiration</a>
+            <a href="/Contact">Contact</a>
+        </div>
+        <div class="footer-social">
+            <a href="https://www.instagram.com/temogoat/">My: Instagram</a>
+            <a href="https://www.facebook.com/temuka.gorgadze">My: Facebook</a>
+            <a href="https://www.behance.net/temogorgadze">My: Behance</a>
+            <a href="https://www.pinterest.com/TemoGoat/">My: Pinterest</a>
+        </div>
+    </div>
+    <div style="margin-top: 40px; margin-left: -650px; text-align: center;">
+        <a href="#" style="text-decoration: none; color: white;">
+            Gmail For Help: vislywebstite@gmail.com
+        </a>
+    </div>
+    <div style="margin-top: -30px; margin-left: 650px; text-align: center;">
+        <a href="paypal.me/TemoGorgadze" style="text-decoration: none; color: white;">
+            Support Our Project
+        </a>
+    </div>
+</footer>
+
+{% endblock %}

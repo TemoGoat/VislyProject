@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block body %}
+{% for message in get_flashed_messages() %}
+
+<div class="alert alert-danger">
+    {{ error }}
+</div>
+
+{% endfor %}
+
+<div class="container d-flex justify-content-center align-items-center" style="height: 60vh;">
+    <form method="post" class="w-50">
+        {{ form.hidden_tag() }}
+        <div style="letter-spacing:4px;">
+            <h2 class="text-center mb-4">Welcome To Visly</h2>
+        </div>
+        <div class="d-flex justify-content-center align-items-center">
+            <img src="/static/VISLY.png" width="200px" class="img-fluid" alt="VISLY Logo">
+        </div>
+
+        <div class="mb-3 text-left d-flex w-50 flex-column mx-auto">
+            {{ form.username(class="form-control text-left", placeholder=form.username.label.text) }}
+        </div>
+
+        <div class="mb-3 text-left d-flex w-50 flex-column mx-auto">
+            {{ form.password(class="form-control text-left", placeholder=form.password.label.text) }}
+        </div>
+
+        <div class="mt-5 text-center text-white" >
+            {{ form.submit(class="btn px-5", style="background-color: #4B3F72; border-color: #4B3F72; color: white;") }}
+        </div>
+
+    </form>
+</div>
+
+
+
+{% endblock %}

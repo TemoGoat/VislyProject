@@ -1,0 +1,150 @@
+{#  templates/edit_profile.html  #}
+{% extends "base.html" %}
+
+{% block title %}Edit Profile{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='edit_profile.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid px-3 px-md-5 mt-5">
+
+  <h2 class="mb-4 text-center text-md-start" style="letter-spacing:3px;">Edit profile</h2>
+
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-8 col-xl-6">
+
+      <form method="POST" enctype="multipart/form-data" class="shadow-sm p-4 rounded-3 bg-white">
+        {{ form.hidden_tag() }}
+
+        <div class="mb-3">
+          {{ form.username.label(class="form-label fw-semibold") }}
+          {{ form.username(class="form-control") }}
+        </div>
+
+        <div class="mb-3">
+          {{ form.email.label(class="form-label fw-semibold") }}
+          {{ form.email(class="form-control") }}
+        </div>
+
+        <div class="mb-3">
+          {{ form.profile_image.label(class="form-label fw-semibold") }}
+          {{ form.profile_image(class="form-control") }}
+        </div>
+
+        <hr>
+
+        <div class="mb-3">
+          {{ form.old_password.label(class="form-label fw-semibold") }}
+          {{ form.old_password(class="form-control") }}
+          <small class="form-text text-muted">Only required if changing your password</small>
+        </div>
+
+        <div class="mb-3">
+          {{ form.new_password.label(class="form-label fw-semibold") }}
+          {{ form.new_password(class="form-control") }}
+        </div>
+
+        <div class="mb-3">
+          {{ form.confirm_password.label(class="form-label fw-semibold") }}
+          {{ form.confirm_password(class="form-control") }}
+        </div>
+
+        <hr>
+
+        <div class="mb-3">
+          {{ form.about_me.label(class="form-label fw-semibold") }}
+          {{ form.about_me(class="form-control", rows=5) }}
+        </div>
+
+        <hr>
+
+        <div class="mb-3">
+          {{ form.pinterest_url.label(class="form-label fw-semibold") }}
+          {{ form.pinterest_url(class="form-control") }}
+        </div>
+
+        <div class="mb-3">
+          {{ form.instagram_url.label(class="form-label fw-semibold") }}
+          {{ form.instagram_url(class="form-control") }}
+        </div>
+
+        <div class="mb-3">
+          {{ form.behance_url.label(class="form-label fw-semibold") }}
+          {{ form.behance_url(class="form-control") }}
+        </div>
+
+        <div class="mb-3">
+          {{ form.website_url.label(class="form-label fw-semibold") }}
+          {{ form.website_url(class="form-control") }}
+        </div>
+
+        <button type="submit" class="btn btn-success w-100">Update Profile</button>
+      </form>
+
+      {# ───────────────────────── Flash & Field Errors ───────────────────────── #}
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }} alert-dismissible fade show mt-3" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
+      {% endwith %}
+
+      {% for field in form %}
+        {% for error in field.errors %}
+          <div class="alert alert-danger mt-2">{{ error }}</div>
+        {% endfor %}
+      {% endfor %}
+
+    </div>
+  </div>
+
+</div>
+
+</div>
+
+<footer class="visly-footer">
+    <div class="footer-container">
+        <div class="footer-branding">
+            <div class="branding-left">
+                <a href="/"> <img src="/static/VISLY-01 WHITE.png" width="100px" class="footer-logo" alt="Visly Logo">
+                </a>
+            </div>
+            <div class="branding-right">
+                <a href="https://tbcbank.ge/ka/tbc-education"> <img src="/static/TBCLOGOWHITE.png" width="150px"
+                                                                    class="footer-logo" alt="TBC Logo"> </a>
+            </div>
+        </div>
+
+        <div class="footer-links">
+            <a href="/">Home</a>
+            <a href="#">News</a>
+            <a href="/aboutus">About Us</a>
+            <a href="/">Find Inspiration</a>
+            <a href="/Contact">Contact</a>
+        </div>
+        <div class="footer-social">
+            <a href="https://www.instagram.com/temogoat/">My: Instagram</a>
+            <a href="https://www.facebook.com/temuka.gorgadze">My: Facebook</a>
+            <a href="https://www.behance.net/temogorgadze">My: Behance</a>
+            <a href="https://www.pinterest.com/TemoGoat/">My: Pinterest</a>
+        </div>
+    </div>
+    <div style="margin-top: 40px; margin-left: -650px; text-align: center;">
+        <a href="#" style="text-decoration: none; color: white;">
+            Gmail For Help: vislywebstite@gmail.com
+        </a>
+    </div>
+    <div style="margin-top: -30px; margin-left: 650px; text-align: center;">
+        <a href="paypal.me/TemoGorgadze" style="text-decoration: none; color: white;">
+            Support Our Project
+        </a>
+    </div>
+</footer>
+
+{% endblock %}

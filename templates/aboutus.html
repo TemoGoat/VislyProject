@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}About Us - Visly{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='aboutus.css') }}">
+{% endblock %}
+
+{% block body %}
+<section class="about-section">
+    <div class="about-container">
+        <h1 class="about-title">About Visly</h1>
+        <p class="about-text">
+            Visly is a platform for those who want to save, share and find inspiration in creative projects. Here, every
+            photo has its own story — whether it’s a travel memory, a handmade item or just a moment from everyday life.
+        </p>
+
+        <p class="about-text">
+            Our goal is to create a space where creativity, aesthetics and communication come together. Visly helps you
+            find inspiration, share your vision with others and be proud of yourself.
+        </p>
+
+        <div class="about-signature">
+            <p>With 💜<br>Team Visly</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

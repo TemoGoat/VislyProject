@@ -1,0 +1,35 @@
+.html{
+background-color: 202020;
+padding: 20px;
+}
+
+.text{
+color: white;
+}
+
+.frame{
+border-radius: 5px;
+border:1px #606060 solid;
+}
+
+.section{
+background-color: #7393B3;
+margin: 0px;
+padding: 10px;
+border-radius: 10px;
+}
+
+.Click{
+color: white;
+-webkit-text-stroke: 0.4px white;
+width: 150px;
+height: 50px;
+background-color: #009b72;
+Border-radius: 8px;
+cursor: pointer;
+transition:all 600ms
+}
+
+.click:hover {
+background-color: #1d614f;
+}

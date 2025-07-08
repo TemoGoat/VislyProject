@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}About Us - Visly{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='Contact.css') }}">
+{% endblock %}
+
+
+{% block body %}
+<section class="about-section">
+    <div class="about-container">
+        <h1 class="about-title">Contact Us</h1>
+
+        <p class="about-text">
+            Got questions, ideas or feedback? We'd love to hear from you! <br>
+            Reach out to us using the contact details below or follow us on social media.
+        </p>
+
+        <div class="about-text" style="margin-top: 30px; text-align: left;">
+            <strong>Email:</strong> <a href="#">vislywebstite@gmail.com</a><br>
+            <strong>Location:</strong> Tbilisi, Georgia
+        </div>
+
+        <div class="about-text" style="margin-top: 30px;">
+            You can also find us on:<br>
+            <a href="#" target="_blank">Instagram</a> |
+            <a href="#" target="_blank">Facebook</a> |
+            <a href="https://www.pinterest.com/vislyv/" target="_blank">Pinterest</a>
+        </div>
+
+        <div class="about-signature">
+            <p>With 💜<br>Team Visly</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

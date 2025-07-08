@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block body %}
+<h2>Search Results for "{{ query }}"</h2>
+
+{% if photos %}
+<div class="row g-3">
+    {% for p in photos %}
+    <div class="col-6 col-md-4 col-lg-3">
+        <div class="card h-100 shadow-sm">
+            <a href="{{ url_for('photo_detail', photo_id=p.id) }}">
+                <img src="{{ url_for('static', filename='uploads/' + p.filename) }}"
+                     class="card-img-top" alt="{{ p.title }}">
+            </a>
+            <div class="card-body p-2">
+                <h6 class="card-title mb-1">{{ p.title }}</h6>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p class="text-muted">No results found.</p>
+{% endif %}
+{% endblock %}

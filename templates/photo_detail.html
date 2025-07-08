@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+
+{% block title %}Photo Details - Visly{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='photo_detail.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="photo-detail-container">
+
+    <div class="photo-frame">
+        <img src="{{ url_for('static', filename='uploads/' + photo.filename) }}"
+             alt="{{ photo.title }}">
+    </div>
+    {% for post in posts %}
+    <div class="post-card">
+        <img src="{{ url_for('static', filename='uploads/' ~ post.image_filename) }}" alt="Post Image"
+             class="post-image">
+
+    </div>
+    {% endfor %}
+
+    <div class="photo-info">
+
+        <!-- PROFILE SECTION -->
+        <div class="profile-section">
+
+            <h2 class="profile-name mb-3">{{ photo.title }}</h2>
+
+            <!-- პროფილის სურათი -->
+            <div class="d-flex align-items-center mb-2">
+                <img src="{{ url_for('static', filename='uploads/' + (photo.user.image if photo.user.image else 'BLANKVISLY.png')) }}"
+                     class="rounded-circle me-2 shadow-sm border"
+                     style="width: 50px; height: 50px; object-fit: cover; border-color: #ddd;"
+                     alt="Profile Picture">
+
+                <!-- პროფილის სახელი -->
+                <a href="{{ url_for('public_profile', username=photo.user.username) }}"
+                   class="author-name text-decoration-none"
+                   style="color: black; letter-spacing: 1px; transition: all 0.3s ease;"
+                   onmouseover="this.style.color='#007bff'; this.style.letterSpacing='1.5px';"
+                   onmouseout="this.style.color='black'; this.style.letterSpacing='1px';">
+                    {{ photo.user.username }}
+                </a>
+            </div>
+
+            {% if current_user.id == photo.user_id %}
+            <textarea class="description">{{ photo.description }}</textarea>
+            {% else %}
+            <p class="description">{{ photo.description }}</p>
+            {% endif %}
+        </div>
+
+        {% if current_user.is_authenticated %}
+        <div class="storyline-add-box mt-4">
+            <h5>Add to Storyline</h5>
+            <form method="POST" action="{{ url_for('add_to_storyline', photo_id=photo.id) }}">
+                <div class="mb-2">
+                    <select name="storyline_id" class="form-select" required>
+                        <option value="">Choose Storyline</option>
+                        {% for sl in current_user.storylines %}
+                        <option value="{{ sl.id }}">{{ sl.title }}</option>
+                        {% endfor %}
+                    </select>
+
+                </div>
+                <div class="mb-2">
+                    <input type="date" name="date" class="form-control" value="{{ current_date }}">
+                </div>
+                <div class="mb-2">
+                    <input type="text" name="comment" placeholder="Short comment" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-outline-primary btn-sm">+ Add to Storyline</button>
+            </form>
+        </div>
+        {% endif %}
+
+
+        {% if current_user.is_authenticated %}
+        <form method="POST" class="comment-form">
+            <input type="text" name="comment" placeholder="Add Comment" class="comment-input" required>
+            <button type="submit" class="btn-submit">Post</button>
+        </form>
+        {% endif %}
+
+        <div class="comment-list">
+
+            {% for comment in comments %}
+            <div class="comment-item">
+
+                <a href="{{ url_for('public_profile', username=comment.user.username) }}">
+                    <img src="{{ url_for('static', filename=comment.user.image or 'default.png') }}"
+                         alt="profile"
+                         class="comment-avatar">
+                </a>
+
+                <div class="comment-body">
+                    <div class="comment-header">
+                        <a href="{{ url_for('public_profile', username=comment.user.username) }}"
+                           class="comment-username">
+                            {{ comment.user.username }}
+                        </a>
+                        <span class="comment-time">
+                            {{ comment.timestamp.strftime('%Y-%m-%d %H:%M') }}
+                        </span>
+                    </div>
+                    <div class="comment-text">
+                        {{ comment.content }}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+
+        <!-- SIMILAR PHOTOS SECTION -->
+        <div class="related-photos-section">
+            <h3 class="related-title">More Photos</h3>
+
+            <div class="related-photos-grid masonry">
+                {% for p in related_photos %}
+                <div class="masonry-item">
+                    <a href="{{ url_for('photo_detail', photo_id=p.id) }}" class="related-photo-link">
+                        <img src="{{ url_for('static', filename='uploads/' + p.filename) }}"
+                             alt="{{ p.title }}" class="related-photo-img">
+                    </a>
+                    <div class="p-2">
+                        <p class="photo-title mb-1" style="font-weight: 500;">{{ p.title }}</p>
+                        <a href="{{ url_for('public_profile', username=p.user.username) }}"
+                           class="text-muted small text-decoration-none">
+                            by {{ p.user.username }}
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+{% endblock %}

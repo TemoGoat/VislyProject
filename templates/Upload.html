@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block title %}Upload - Visly{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='Upload.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="container upload-page mt-5">
+    <form action="{{ url_for('upload') }}"
+          method="POST"
+          enctype="multipart/form-data">
+
+        <div class="row justify-content-center">
+            <div class="col-lg-10 d-flex flex-wrap gap-5 justify-content-center">
+
+                <div class="upload-box">
+                    <div class="upload-area text-center">
+                        <div class="upload-icon">⤴️</div>
+                        <p>Upload your photo</p>
+
+                        <input class="form-control mt-2"
+                               type="file" name="image"
+                               accept="image/*" required>
+
+                        <small class="text-muted d-block mt-2">
+                            High‑quality .jpg / .png / .jpeg, ≤ 20&nbsp;MB
+                        </small>
+                    </div>
+                    <button class="btn upload-btn mt-3" type="submit">Upload</button>
+                </div>
+
+
+                <div class="info-box">
+                    <div class="mb-3">
+                        <label class="form-label" for="title">Title</label>
+                        <input class="form-control" id="title"
+                               name="title" placeholder="Name" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="description">Description</label>
+                        <textarea class="form-control" id="description"
+                                  name="description" rows="3"
+                                  placeholder="Enter description"></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="tags">Tags</label>
+                        <input class="form-control" id="tags"
+                               name="tags" placeholder="e.g. art, neon">
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
+
+</div>
+
+<footer class="visly-footer">
+    <div class="footer-container">
+        <div class="footer-branding">
+            <div class="branding-left">
+                <a href="/"> <img src="/static/VISLY-01 WHITE.png" width="100px" class="footer-logo" alt="Visly Logo">
+                </a>
+            </div>
+            <div class="branding-right">
+                <a href="https://tbcbank.ge/ka/tbc-education"> <img src="/static/TBCLOGOWHITE.png" width="150px"
+                                                                    class="footer-logo" alt="TBC Logo"> </a>
+            </div>
+        </div>
+
+        <div class="footer-links">
+            <a href="/">Home</a>
+            <a href="#">News</a>
+            <a href="/aboutus">About Us</a>
+            <a href="/">Find Inspiration</a>
+            <a href="/Contact">Contact</a>
+        </div>
+        <div class="footer-social">
+            <a href="https://www.instagram.com/temogoat/">My: Instagram</a>
+            <a href="https://www.facebook.com/temuka.gorgadze">My: Facebook</a>
+            <a href="https://www.behance.net/temogorgadze">My: Behance</a>
+            <a href="https://www.pinterest.com/TemoGoat/">My: Pinterest</a>
+        </div>
+    </div>
+    <div style="margin-top: 40px; margin-left: -650px; text-align: center;">
+        <a href="#" style="text-decoration: none; color: white;">
+            Gmail For Help: vislywebstite@gmail.com
+        </a>
+    </div>
+    <div style="margin-top: -30px; margin-left: 650px; text-align: center;">
+        <a href="paypal.me/TemoGorgadze" style="text-decoration: none; color: white;">
+            Support Our Project
+        </a>
+    </div>
+</footer>
+
+{% endblock %}

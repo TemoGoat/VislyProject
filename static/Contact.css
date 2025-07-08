@@ -1,0 +1,38 @@
+.about-section {
+    padding: 60px 20px;
+    background-color: #f4f0fb;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-container {
+    max-width: 800px;
+    background-color: white;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    text-align: center;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.about-title {
+    font-size: 2.5em;
+    color: #4b3b6a;
+    margin-bottom: 20px;
+}
+
+.about-text {
+    font-size: 1.1em;
+    color: #333;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.about-signature {
+    margin-top: 30px;
+    font-style: italic;
+    color: #6a4b9e;
+    font-size: 1.1em;
+}

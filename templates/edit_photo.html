@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Edit Photo</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+
+        <div class="mb-3">
+            {{ form.title.label(class="form-label") }}
+            {{ form.title(class="form-control") }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.description.label(class="form-label") }}
+            {{ form.description(class="form-control", rows=4) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.tags.label(class="form-label") }}
+            {{ form.tags(class="form-control") }}
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Current Image</label><br>
+            <img src="{{ url_for('static', filename='uploads/' ~ photo.filename) }}" alt="Photo" class="img-fluid rounded" style="max-width: 300px;">
+        </div>
+
+        <button type="submit" class="btn" style="background-color: #17a2b8; border-color: #17a2b8; color: white; width: 140px; border-radius: 15px;"> Save Changes </button>
+    </form>
+</div>
+{% endblock %}

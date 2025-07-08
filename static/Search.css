@@ -1,0 +1,118 @@
+/* Search.css */
+
+.search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.search-input {
+    padding: 5px 10px;
+    font-size: 13px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 250px;
+}
+
+.search-button {
+    padding: 5px 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: 10px;
+    background-color: #4B3F72;
+    color: white;
+    cursor: pointer;
+}
+
+.search-button:hover {
+    background-color: #3a2e5a;
+}
+
+.masonry {
+    column-count: 6;
+    column-gap: 0.5rem;
+}
+
+@media (max-width: 1400px) {
+    .masonry {
+        column-count: 5;
+    }
+}
+@media (max-width: 1200px) {
+    .masonry {
+        column-count: 4;
+    }
+}
+@media (max-width: 992px) {
+    .masonry {
+        column-count: 3;
+    }
+}
+
+@media (max-width: 768px) {
+    .masonry {
+        column-count: 2;
+    }
+}
+
+}
+@media (max-width: 576px) {
+    .masonry {
+        column-count: 2;
+        column-gap: 0.5rem;
+    }
+}
+
+/* ბარათი */
+.masonry-item {
+    break-inside: avoid;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    overflow: hidden;
+    background: white;
+}
+
+/* სურათი */
+.masonry-item img {
+    width: 100%;
+    display: block;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* ატვირთველის ბმული */
+.uploader {
+    padding: 4px 8px 10px;
+    display: block;
+    font-size: 13px;
+    color: #666;
+}
+
+<style>
+.items {
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s;
+}
+.items:hover {
+  color: #0d6efd;
+  text-decoration: underline;
+}
+.sub-item {
+  display: inline-block;
+  margin: 0 10px;
+  padding: 6px 12px;
+  background: #f0f0f0;
+  border-radius: 6px;
+  transition: 0.2s;
+  cursor: pointer;
+}
+.sub-item:hover {
+  background: #0d6efd;
+  color: white;
+}
+</style>
+
