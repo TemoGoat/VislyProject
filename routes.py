@@ -396,7 +396,7 @@ def signup():
             return redirect('/')
 
     print(form.errors)
-    return render_template("Signup.html", form=form)
+    return render_template("SignUp.html", form=form)
 
 
 @app.route("/add_to_storyline/<int:photo_id>", methods=["POST"])
