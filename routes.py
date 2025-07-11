@@ -496,3 +496,24 @@ def view_profile(user_id):
     total_likes = sum(post.like_count for post in posts)
     return render_template("Profile.html", user=user, posts=posts, total_likes=total_likes)
 
+import smtplib
+from email.message import EmailMessage
+
+def notify_admin(username):
+    sender_email = "vislywebstite@gmail.com"
+    receiver_email = "vislywebstite@gmail.com"
+    app_password = "ngzj hkbo elfk ndke"
+
+    msg = EmailMessage()
+    msg.set_content(f"ახალი მომხმარებელი დარეგისტრირდა: {username}")
+    msg['Subject'] = 'ახალი რეგისტრაცია საიტზე'
+    msg['From'] = sender_email
+    msg['To'] = receiver_email
+
+    try:
+        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+            smtp.login(sender_email, app_password)
+            smtp.send_message(msg)
+            print("შეტყობინება გაიგზავნა")
+    except Exception as e:
+        print("შეცდომა შეტყობინების გაგზავნისას:", e)
