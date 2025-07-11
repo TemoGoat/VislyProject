@@ -498,11 +498,12 @@ def view_profile(user_id):
 
 import smtplib
 from email.message import EmailMessage
+import os
 
 def notify_admin(username):
-    sender_email = "vislywebstite@gmail.com"
-    receiver_email = "vislywebstite@gmail.com"
-    app_password = "ngzj hkbo elfk ndke"
+    sender_email = os.environ.get('EMAIL_USER', 'vislywebstite@gmail.com')
+    receiver_email = os.environ.get('EMAIL_RECEIVER', 'vislywebstite@gmail.com')
+    app_password = os.environ.get('EMAIL_PASS')
 
     msg = EmailMessage()
     msg.set_content(f"ახალი მომხმარებელი დარეგისტრირდა: {username}")
