@@ -393,6 +393,8 @@ def signup():
                 is_admin=is_admin
             )
 
+            notify_admin(username)
+
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user)
