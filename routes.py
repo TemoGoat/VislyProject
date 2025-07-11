@@ -157,17 +157,20 @@ def edit_profile():
 def delete_photo(photo_id):
     photo = Photo.query.get_or_404(photo_id)
 
-    if current_user.id != photo.user_id and not current_user.is_admin:
-        abort(403)
+    if photo.user_id != current_user.id:
+        flash("You are not authorized to delete this photo.", "danger")
+        return redirect(url_for('profile', username=current_user.username))
+
 
     image_path = os.path.join(app.static_folder, 'uploads', photo.filename)
     if os.path.exists(image_path):
         os.remove(image_path)
 
+
     db.session.delete(photo)
     db.session.commit()
     flash("Photo deleted successfully", "success")
-    return redirect(url_for('Profile', username=current_user.username))
+    return redirect(url_for('profile', username=current_user.username))
 
 
 
